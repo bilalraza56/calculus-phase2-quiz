@@ -1,0 +1,1214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculus Unit 1 – Quiz 2 (75 MCQs)</title>
+<style>
+:root{--bg:#f4f5f7;--card:#fff;--ink:#16181d;--mute:#5b6270;--line:#d9dce3;--acc:#2f5bea;--accink:#fff;--sel:#e8eefe;--bad:#c62828;--good:#1b7f3b}
+@media (prefers-color-scheme:dark){:root{--bg:#12141a;--card:#1b1e27;--ink:#eceef3;--mute:#9aa1b0;--line:#2e3341;--acc:#6f93ff;--accink:#0d1020;--sel:#232b47;--bad:#ff7b7b;--good:#5fd68a}}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{background:var(--bg);color:var(--ink);font:17px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+input{user-select:text;-webkit-user-select:text}
+.wrap{max-width:720px;margin:0 auto;padding:20px 16px 48px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
+h1{font-size:1.4rem;margin:0 0 6px}
+h2{font-size:1.15rem;margin:0 0 12px;line-height:1.4}
+p{margin:0 0 12px}
+.mute{color:var(--mute);font-size:.92rem}
+.rules{margin:14px 0 18px;padding:0 0 0 20px}
+.rules li{margin-bottom:6px}
+label{display:block;font-weight:600;margin:12px 0 4px}
+input[type=text]{width:100%;padding:11px 12px;font-size:1rem;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
+button{font:inherit;cursor:pointer;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:11px 18px}
+button.primary{background:var(--acc);color:var(--accink);border-color:var(--acc);font-weight:600}
+button:disabled{opacity:.45;cursor:not-allowed}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:.92rem;color:var(--mute)}
+.bar{height:6px;background:var(--line);border-radius:6px;overflow:hidden;margin-bottom:16px}
+.bar>i{display:block;height:100%;background:var(--acc);width:0}
+.opt{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;margin:0 0 10px;padding:13px 14px;border-radius:12px;background:var(--card)}
+.opt b{min-width:1.4em;color:var(--mute)}
+.opt.sel{border-color:var(--acc);background:var(--sel)}
+.row{display:flex;justify-content:flex-end;margin-top:14px}
+.big{font-size:2.6rem;font-weight:700;margin:6px 0}
+.bad{color:var(--bad)}.good{color:var(--good)}
+pre{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px;font:.92rem/1.5 ui-monospace,Menlo,Consolas,monospace;user-select:text;-webkit-user-select:text}
+.hide{display:none}
+.adm{margin-top:18px;text-align:center}
+.adm button.lnk{border:0;background:none;color:var(--mute);font-size:.85rem;text-decoration:underline;padding:6px}
+.adm .box{display:flex;gap:8px;justify-content:center;margin-top:8px}
+.adm input{max-width:200px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<section id="s-start" class="card hide">
+  <h1>Calculus &amp; Analytic Geometry – Unit 1</h1>
+  <p class="mute">Limits and Continuity · Quiz 2 (Second 75 MCQs)</p>
+  <ul class="rules">
+    <li>75 MCQs in random order. Only one attempt is allowed. / کوئز صرف ایک بار ہو گا۔</li>
+    <li>The quiz opens in full screen. Leaving it, switching tab or app, minimizing, refreshing or going back <b>ends the quiz immediately</b>. / اسکرین سے باہر نکلے تو کوئز ختم۔</li>
+    <li>You cannot go back to a previous question once you press Next.</li>
+    <li>No correct answers are shown during the quiz.</li>
+  </ul>
+  <label for="nm">Full name</label>
+  <input id="nm" type="text" autocomplete="off" maxlength="60">
+  <label for="rl">Roll no.</label>
+  <input id="rl" type="text" autocomplete="off" maxlength="30">
+  <p id="err" class="bad mute" style="margin-top:10px"></p>
+  <button id="go" class="primary">Start Quiz</button>
+</section>
+
+<section id="s-quiz" class="hide">
+  <div class="top"><span id="qn"></span><span id="clock">00:00</span></div>
+  <div class="bar"><i id="pb"></i></div>
+  <div class="card">
+    <h2 id="qt"></h2>
+    <div id="opts"></div>
+    <div class="row"><button id="next" class="primary" disabled>Next</button></div>
+  </div>
+</section>
+
+<section id="s-end" class="card hide">
+  <h1 id="et"></h1>
+  <p id="em" class="mute"></p>
+  <div class="big" id="sc"></div>
+  <p class="mute">Copy the report below and send it to your quiz head. The review of your wrong answers is only for you and is not part of the report.</p>
+  <pre id="rp"></pre>
+  <button id="cp" class="primary">Copy report</button>
+  <h2 style="margin-top:22px">Review</h2>
+  <pre id="rv"></pre>
+</section>
+
+<div id="adm" class="adm hide">
+  <button id="admt" class="lnk">Admin reset</button>
+  <div id="admb" class="box hide">
+    <input id="admc" type="password" placeholder="Admin code" autocomplete="off">
+    <button id="admg" class="primary">Reset</button>
+  </div>
+  <p id="adme" class="bad mute"></p>
+</div>
+
+</div>
+
+<script>
+const BASE = [
+{
+"n": 76,
+"q": "x → 0 means that x is:",
+"opts": [
+"Exactly zero",
+"Very close to zero but not zero",
+"Negative",
+"Infinity"
+],
+"ans": 1
+},
+{
+"n": 77,
+"q": "x = 0 means that x is:",
+"opts": [
+"Very small",
+"Very large",
+"Actually zero",
+"Approaching zero"
+],
+"ans": 2
+},
+{
+"n": 78,
+"q": "x → ∞ means that x becomes:",
+"opts": [
+"Smaller and smaller",
+"Zero",
+"Larger and larger",
+"Constant"
+],
+"ans": 2
+},
+{
+"n": 79,
+"q": "x → a means that x is close to a but:",
+"opts": [
+"Equal to a",
+"Different from a",
+"Equal to 0",
+"Equal to ∞"
+],
+"ans": 1
+},
+{
+"n": 80,
+"q": "lim (x→2) (x + 3) = ?",
+"opts": [
+"2",
+"3",
+"5",
+"6"
+],
+"ans": 2
+},
+{
+"n": 81,
+"q": "lim (x→1) (2x + 4) = ?",
+"opts": [
+"4",
+"6",
+"2",
+"8"
+],
+"ans": 1
+},
+{
+"n": 82,
+"q": "lim (x→3) (2x + 4) = ?",
+"opts": [
+"6",
+"10",
+"12",
+"4"
+],
+"ans": 1
+},
+{
+"n": 83,
+"q": "lim (x→2) x³ = ?",
+"opts": [
+"6",
+"4",
+"8",
+"2"
+],
+"ans": 2
+},
+{
+"n": 84,
+"q": "lim (x→1) (3x² − 2x + 4) = ?",
+"opts": [
+"3",
+"4",
+"5",
+"6"
+],
+"ans": 2
+},
+{
+"n": 85,
+"q": "For a polynomial P(x), lim (x→c) P(x) = ?",
+"opts": [
+"0",
+"P(c)",
+"c",
+"∞"
+],
+"ans": 1
+},
+{
+"n": 86,
+"q": "The limit of the sum of two functions equals:",
+"opts": [
+"The product of their limits",
+"The sum of their limits",
+"The difference of their limits",
+"The quotient of their limits"
+],
+"ans": 1
+},
+{
+"n": 87,
+"q": "The limit of the product of two functions equals:",
+"opts": [
+"The sum of their limits",
+"The difference of their limits",
+"The quotient of their limits",
+"The product of their limits"
+],
+"ans": 3
+},
+{
+"n": 88,
+"q": "lim (x→a) k·f(x) = ?",
+"opts": [
+"k + L",
+"L/k",
+"kL",
+"k"
+],
+"ans": 2
+},
+{
+"n": 89,
+"q": "lim (x→2) 3x = ?",
+"opts": [
+"5",
+"9",
+"6",
+"3"
+],
+"ans": 2
+},
+{
+"n": 90,
+"q": "lim (x→4) (x − 5) = ?",
+"opts": [
+"−1",
+"1",
+"9",
+"−9"
+],
+"ans": 0
+},
+{
+"n": 91,
+"q": "lim [f(x)]ⁿ = ?",
+"opts": [
+"nL",
+"L + n",
+"Lⁿ",
+"L/n"
+],
+"ans": 2
+},
+{
+"n": 92,
+"q": "lim (x→1) (x + 1)² = ?",
+"opts": [
+"2",
+"4",
+"1",
+"3"
+],
+"ans": 1
+},
+{
+"n": 93,
+"q": "Which of the following is an indeterminate form?",
+"opts": [
+"0/0",
+"1/2",
+"3/4",
+"5"
+],
+"ans": 0
+},
+{
+"n": 94,
+"q": "Which of the following is NOT an indeterminate form?",
+"opts": [
+"0/0",
+"∞/∞",
+"∞ − ∞",
+"5/2"
+],
+"ans": 3
+},
+{
+"n": 95,
+"q": "lim (x→1) (x² − 1)/(x − 1) = ?",
+"opts": [
+"0",
+"1",
+"2",
+"∞"
+],
+"ans": 2
+},
+{
+"n": 96,
+"q": "lim (x→2) (x² − 4)/(x − 2) = ?",
+"opts": [
+"4",
+"2",
+"0",
+"8"
+],
+"ans": 0
+},
+{
+"n": 97,
+"q": "lim (x→a) (xⁿ − aⁿ)/(x − a) = ?",
+"opts": [
+"aⁿ",
+"n·aⁿ⁻¹",
+"n·a",
+"0"
+],
+"ans": 1
+},
+{
+"n": 98,
+"q": "lim (x→3) (x² − 9)/(x − 3) = ?",
+"opts": [
+"3",
+"9",
+"6",
+"0"
+],
+"ans": 2
+},
+{
+"n": 99,
+"q": "lim (x→2) (x³ − 8)/(x − 2) = ?",
+"opts": [
+"12",
+"8",
+"6",
+"4"
+],
+"ans": 0
+},
+{
+"n": 100,
+"q": "lim (θ→0) sinθ/θ = 1 only when θ is measured in:",
+"opts": [
+"Degrees",
+"Radians",
+"Minutes",
+"Seconds"
+],
+"ans": 1
+},
+{
+"n": 101,
+"q": "lim (θ→0) sinθ/θ = ?",
+"opts": [
+"0",
+"∞",
+"1",
+"−1"
+],
+"ans": 2
+},
+{
+"n": 102,
+"q": "lim (x→0) sin7x / x = ?",
+"opts": [
+"1",
+"0",
+"7",
+"1/7"
+],
+"ans": 2
+},
+{
+"n": 103,
+"q": "lim (x→0) sin3x / x = ?",
+"opts": [
+"3",
+"1",
+"0",
+"1/3"
+],
+"ans": 0
+},
+{
+"n": 104,
+"q": "lim (x→0) x / sin x = ?",
+"opts": [
+"0",
+"1",
+"∞",
+"−1"
+],
+"ans": 1
+},
+{
+"n": 105,
+"q": "lim (θ→0) (1 − cosθ)/θ = ?",
+"opts": [
+"1",
+"0",
+"1/2",
+"∞"
+],
+"ans": 1
+},
+{
+"n": 106,
+"q": "lim (x→0) sin ax / sin bx = ?",
+"opts": [
+"a/b",
+"b/a",
+"ab",
+"1"
+],
+"ans": 0
+},
+{
+"n": 107,
+"q": "lim (n→∞) (1 + 1/n)ⁿ = ?",
+"opts": [
+"1",
+"e",
+"∞",
+"0"
+],
+"ans": 1
+},
+{
+"n": 108,
+"q": "lim (x→0) (1 + x)^(1/x) = ?",
+"opts": [
+"1",
+"0",
+"e",
+"∞"
+],
+"ans": 2
+},
+{
+"n": 109,
+"q": "lim (x→0) (eˣ − 1)/x = ?",
+"opts": [
+"0",
+"1",
+"e",
+"∞"
+],
+"ans": 1
+},
+{
+"n": 110,
+"q": "lim (x→0) (aˣ − 1)/x = ?",
+"opts": [
+"logₑ a",
+"a",
+"1",
+"0"
+],
+"ans": 0
+},
+{
+"n": 111,
+"q": "lim (x→∞) 1/x = ?",
+"opts": [
+"∞",
+"1",
+"0",
+"−1"
+],
+"ans": 2
+},
+{
+"n": 112,
+"q": "lim (x→+∞) eˣ = ?",
+"opts": [
+"0",
+"1",
+"e",
+"∞"
+],
+"ans": 3
+},
+{
+"n": 113,
+"q": "lim (x→−∞) eˣ = ?",
+"opts": [
+"∞",
+"0",
+"1",
+"−∞"
+],
+"ans": 1
+},
+{
+"n": 114,
+"q": "The approximate value of e is:",
+"opts": [
+"2.718",
+"3.142",
+"1.414",
+"2.5"
+],
+"ans": 0
+},
+{
+"n": 115,
+"q": "Sandwich theorem: if f(x) ≤ g(x) ≤ h(x) and lim f(x) = lim h(x) = L, then lim g(x) = ?",
+"opts": [
+"0",
+"L",
+"1",
+"f(x)"
+],
+"ans": 1
+},
+{
+"n": 116,
+"q": "The left hand limit means x approaches c from the:",
+"opts": [
+"Right",
+"Left",
+"Both sides",
+"Above"
+],
+"ans": 1
+},
+{
+"n": 117,
+"q": "The right hand limit means x approaches c from the:",
+"opts": [
+"Left",
+"Below",
+"Right",
+"Both sides"
+],
+"ans": 2
+},
+{
+"n": 118,
+"q": "lim (x→c) f(x) exists if and only if:",
+"opts": [
+"Left hand limit = Right hand limit",
+"Left hand limit ≠ Right hand limit",
+"f(c) = 0",
+"f is undefined"
+],
+"ans": 0
+},
+{
+"n": 119,
+"q": "If the left hand limit ≠ the right hand limit, then the limit:",
+"opts": [
+"Exists",
+"Equals 0",
+"Does not exist",
+"Equals 1"
+],
+"ans": 2
+},
+{
+"n": 120,
+"q": "A function is continuous at c if how many conditions are satisfied?",
+"opts": [
+"1",
+"2",
+"3",
+"4"
+],
+"ans": 2
+},
+{
+"n": 121,
+"q": "The first condition of continuity is:",
+"opts": [
+"f(c) is defined",
+"f(c) = 0",
+"f(c) = 1",
+"f is even"
+],
+"ans": 0
+},
+{
+"n": 122,
+"q": "The third condition of continuity is:",
+"opts": [
+"lim f(x) = 0",
+"lim f(x) = f(c)",
+"f(c) = ∞",
+"f′(c) exists"
+],
+"ans": 1
+},
+{
+"n": 123,
+"q": "If one of the three conditions fails at c, the function is:",
+"opts": [
+"Continuous",
+"Discontinuous",
+"Linear",
+"Even"
+],
+"ans": 1
+},
+{
+"n": 124,
+"q": "f(x) = (x² − 1)/(x − 1) at x = 1 is:",
+"opts": [
+"Continuous",
+"Discontinuous",
+"Constant",
+"Odd"
+],
+"ans": 1
+},
+{
+"n": 125,
+"q": "For f(x) = (x² − 1)/(x − 1), the value f(1) is:",
+"opts": [
+"0",
+"2",
+"1",
+"Not defined"
+],
+"ans": 3
+},
+{
+"n": 126,
+"q": "If f(x) = 3x² − 5x + 4, then f(1) = ?",
+"opts": [
+"2",
+"3",
+"4",
+"1"
+],
+"ans": 0
+},
+{
+"n": 127,
+"q": "lim (x→1) (3x² − 5x + 4) = ?",
+"opts": [
+"1",
+"2",
+"3",
+"4"
+],
+"ans": 1
+},
+{
+"n": 128,
+"q": "If f(x) = 2x + 1, then f(3) = ?",
+"opts": [
+"5",
+"6",
+"7",
+"8"
+],
+"ans": 2
+},
+{
+"n": 129,
+"q": "For f(x) = x − 1 (when x < 3), the left hand limit at x = 3 is:",
+"opts": [
+"1",
+"2",
+"3",
+"7"
+],
+"ans": 1
+},
+{
+"n": 130,
+"q": "For f(x) = 2x + 1 (when x ≥ 3), the right hand limit at x = 3 is:",
+"opts": [
+"7",
+"6",
+"2",
+"3"
+],
+"ans": 0
+},
+{
+"n": 131,
+"q": "In Q129 and Q130, since the left limit (2) ≠ the right limit (7), f at x = 3 is:",
+"opts": [
+"Continuous",
+"Not continuous",
+"Even",
+"Constant"
+],
+"ans": 1
+},
+{
+"n": 132,
+"q": "For f(x) = 2x + 5 (x ≤ 2) and 4x + 1 (x > 2), the left hand limit at x = 2 is:",
+"opts": [
+"9",
+"8",
+"7",
+"10"
+],
+"ans": 0
+},
+{
+"n": 133,
+"q": "For the same function, the right hand limit at x = 2 (using 4x + 1) is:",
+"opts": [
+"8",
+"10",
+"9",
+"7"
+],
+"ans": 2
+},
+{
+"n": 134,
+"q": "For the same function, since both limits are 9 and f(2) = 9, f at x = 2 is:",
+"opts": [
+"Continuous",
+"Discontinuous",
+"Undefined",
+"Odd"
+],
+"ans": 0
+},
+{
+"n": 135,
+"q": "lim (x→1) (2x² + x − 5) = ?",
+"opts": [
+"−2",
+"0",
+"2",
+"−5"
+],
+"ans": 0
+},
+{
+"n": 136,
+"q": "lim (x→5) |x − 5| = ?",
+"opts": [
+"5",
+"10",
+"0",
+"−5"
+],
+"ans": 2
+},
+{
+"n": 137,
+"q": "lim (x→−3) (x² − 9)/(x − 3) = ?",
+"opts": [
+"0",
+"6",
+"−6",
+"9"
+],
+"ans": 0
+},
+{
+"n": 138,
+"q": "f(x) = |x − 5| at x = 5 is:",
+"opts": [
+"Discontinuous",
+"Continuous",
+"Undefined",
+"Odd"
+],
+"ans": 1
+},
+{
+"n": 139,
+"q": "If f(x) = 3x for x ≤ −2, then f(−2) = ?",
+"opts": [
+"6",
+"−6",
+"3",
+"−3"
+],
+"ans": 1
+},
+{
+"n": 140,
+"q": "If f(x) = x² − 1 for −2 < x < 2, then as x → 2 the value approaches:",
+"opts": [
+"3",
+"4",
+"5",
+"1"
+],
+"ans": 0
+},
+{
+"n": 141,
+"q": "If f(x) = 3 for x ≥ 2 and x² − 1 approaches 3 as x → 2⁻, then f at x = 2 is:",
+"opts": [
+"Discontinuous",
+"Continuous",
+"Undefined",
+"Odd"
+],
+"ans": 1
+},
+{
+"n": 142,
+"q": "For the same function, at x = −2 the left side gives −6 and the right side gives 3. So f at x = −2 is:",
+"opts": [
+"Continuous",
+"Discontinuous",
+"Zero",
+"Even"
+],
+"ans": 1
+},
+{
+"n": 143,
+"q": "For f(x) = mx (x < 3) and x² (x ≥ 3) to be continuous at x = 3, we need 3m = ?",
+"opts": [
+"3",
+"6",
+"9",
+"0"
+],
+"ans": 2
+},
+{
+"n": 144,
+"q": "From Q143, the value of m is:",
+"opts": [
+"1",
+"2",
+"6",
+"3"
+],
+"ans": 3
+},
+{
+"n": 145,
+"q": "For f(x) = x + 3 (x ≠ 3) and f(3) = 2, lim (x→3) f(x) = ?",
+"opts": [
+"2",
+"6",
+"3",
+"0"
+],
+"ans": 1
+},
+{
+"n": 146,
+"q": "For the same function, f(3) = ?",
+"opts": [
+"6",
+"3",
+"2",
+"0"
+],
+"ans": 2
+},
+{
+"n": 147,
+"q": "For the same function, since the limit (6) ≠ f(3) (2), f at x = 3 is:",
+"opts": [
+"Continuous",
+"Even",
+"Odd",
+"Discontinuous"
+],
+"ans": 3
+},
+{
+"n": 148,
+"q": "lim (x→2) (x² − 4)/(x − 2) = ?",
+"opts": [
+"0",
+"2",
+"4",
+"∞"
+],
+"ans": 2
+},
+{
+"n": 149,
+"q": "Every polynomial function is continuous at:",
+"opts": [
+"x = 0 only",
+"Every real number",
+"No point",
+"x > 0 only"
+],
+"ans": 1
+},
+{
+"n": 150,
+"q": "A function is continuous if there is no ___ in its graph.",
+"opts": [
+"Point",
+"Break",
+"Curve",
+"Axis"
+],
+"ans": 1
+}
+];
+let QUESTIONS = BASE;
+
+// ---- Q7-Q13: same statement, new value for every student (and every attempt) ----
+const rnd = n => { const r = new Uint32Array(1); do { crypto.getRandomValues(r); } while (r[0] >= 4294967296 - (4294967296 % n)); return r[0] % n; };
+const fmt = n => (n < 0 ? "\u2212" + (-n) : String(n));
+const range = (a,b) => Array.from({length:b-a+1},(_,i)=>a+i);
+const GEN = {};
+// ---- questions that contain numbers: same statement, new numbers on every attempt ----
+const MINUS = "\u2212", SUPD = "\u2070\u00b9\u00b2\u00b3\u2074\u2075\u2076\u2077\u2078\u2079", INF = "\u221e";
+const sup = n => String(n).split("").map(d => SUPD[+d]).join("");
+const pick = arr => arr[rnd(arr.length)];
+const co = a => a === 1 ? "" : String(a);
+const excl = (arr, ...bad) => arr.filter(v => !bad.includes(v));
+const gcd = (a,b) => b ? gcd(b, a % b) : a;
+function build(q, text, correct, cands){      // correct answer in a random position, 3 plausible wrong ones
+  const bad = [];
+  for (const c of cands) if (c !== correct && !bad.includes(c)) bad.push(c);
+  for (let d=1; bad.length<3; d++) for (const c of [correct+d, correct-d]) if (c !== correct && !bad.includes(c)) bad.push(c);
+  for (let i=bad.length-1;i>0;i--){ const j = rnd(i+1); [bad[i],bad[j]] = [bad[j],bad[i]]; }
+  const vals = bad.slice(0,3), pos = rnd(4); vals.splice(pos,0,correct);
+  return { n:q.n, q:text, opts:vals.map(fmt), ans:pos, gen:true };
+}
+function fixed(q, text, opts, ans){ return { n:q.n, q:text, opts, ans, gen:true }; }   // keeps the original option order
+function newCtx(){ return {}; }
+const FR = [ "1/2","3/4","2/3","5/6","1/3","7/8","2/5","7/2","5/3","9/4","5","4","9","7" ];
+const quad = (p,q,r) => `${co(p)}x\u00b2 ${MINUS} ${co(q)}x + ${r}`;
+const sq = a => `lim (x\u2192${a}) (x\u00b2 ${MINUS} ${a*a})/(x ${MINUS} ${a}) = ?`;
+const sqBuild = q => { const a = pick(range(2,12)); return build(q, sq(a), 2*a, [a, a*a, 0, 2*a+1, 2*a-1, INF]); };
+const sinK = q => { const k = pick(range(2,9)); return build(q, `lim (x\u21920) sin${k}x / x = ?`, k, [1, 0, `1/${k}`, k+1, k*k]); };
+const lin1 = q => { const m = pick(range(2,6)), b = pick(range(1,9)), a = pick(range(-3,5));
+  return build(q, `lim (x\u2192${fmt(a)}) (${m}x + ${b}) = ?`, m*a+b, [m*a-b, m*(a+b), m+b, a+b, m*a, m*a+b+1, m*a+b-1]); };
+const CUSTOM = {
+  80: q => { const a = pick(range(-3,6)), b = pick(range(1,9));
+        return build(q, `lim (x\u2192${fmt(a)}) (x + ${b}) = ?`, a+b, [a-b, a*b, b, a, a+b+1, a+b-1]); },
+  81: lin1,
+  82: lin1,
+  83: q => { const a = pick([-3,-2,-1,1,2,3,4]);
+        return build(q, `lim (x\u2192${fmt(a)}) x\u00b3 = ?`, a*a*a, [3*a, a*a, 3*a*a, a, -a*a*a, a+3]); },
+  84: q => { const p = pick(range(2,5)), r1 = pick(range(2,9)), r2 = pick(range(1,9)), a = pick([-2,-1,1,2,3,4]);
+        return build(q, `lim (x\u2192${fmt(a)}) (${quad(p,r1,r2)}) = ?`, p*a*a-r1*a+r2,
+          [p*a*a+r1*a+r2, p*a*a-r1*a-r2, p*a-r1+r2, p*a*a-r1*a, p*a*a+r1*a-r2, p*a*a-r1*a+r2+1]); },
+  89: q => { const k = pick(range(2,9)), a = pick([-4,-3,-2,-1,1,2,3,4,5,6]);
+        return build(q, `lim (x\u2192${fmt(a)}) ${k}x = ?`, k*a, [k+a, k, a, k*a+k, k*a-k, k*a*a]); },
+  90: q => { const b = pick(range(1,9)), a = pick(range(-5,10));
+        return build(q, `lim (x\u2192${fmt(a)}) (x ${MINUS} ${b}) = ?`, a-b, [a+b, b-a, a, b, -(a+b), a*b]); },
+  92: q => { let a, b; do { a = pick(range(-4,5)); b = pick(range(1,6)); } while (a+b === 0);
+        return build(q, `lim (x\u2192${fmt(a)}) (x + ${b})\u00b2 = ?`, (a+b)*(a+b), [a*a+b*b, a*a+b, 2*(a+b), a*a+2*a*b, a+b, (a-b)*(a-b)]); },
+  93: q => { const c = pick(["0/0", INF+"/"+INF, INF+" "+MINUS+" "+INF]);
+        return build(q, q.q, c, shuffle(FR).slice(0,3)); },
+  94: q => { let a, b; do { a = 1+rnd(9); b = 2+rnd(8); } while (gcd(a,b) !== 1);
+        return build(q, q.q, `${a}/${b}`, ["0/0", INF+"/"+INF, INF+" "+MINUS+" "+INF, "0 \u00d7 "+INF]); },
+  95: sqBuild,
+  96: sqBuild,
+  98: sqBuild,
+  99: q => { const a = pick(range(2,6));
+        return build(q, `lim (x\u2192${a}) (x\u00b3 ${MINUS} ${a*a*a})/(x ${MINUS} ${a}) = ?`, 3*a*a, [a*a*a, 3*a, 2*a*a, a*a, 3*a*a-a, 0]); },
+  102: sinK,
+  103: sinK,
+  124: q => { const a = pick(range(2,9));
+        return fixed(q, `f(x) = (x\u00b2 ${MINUS} ${a*a})/(x ${MINUS} ${a}) at x = ${a} is:`, q.opts, q.ans); },
+  125: q => { const a = pick(range(2,9));
+        return fixed(q, `For f(x) = (x\u00b2 ${MINUS} ${a*a})/(x ${MINUS} ${a}), the value f(${a}) is:`, ["0", String(2*a), String(a), "Not defined"], 3); },
+  126: q => { const p = pick(range(2,6)), r1 = pick(range(2,9)), r2 = pick(range(1,9)), t = pick([1,2,3,-1,-2]);
+        return build(q, `If f(x) = ${quad(p,r1,r2)}, then f(${fmt(t)}) = ?`, p*t*t-r1*t+r2,
+          [p*t*t+r1*t+r2, p*t*t-r1*t-r2, p*t-r1+r2, p*t*t-r1*t, p*t*t+r1*t-r2, p*t*t-r1*t+r2+1]); },
+  127: q => { const p = pick(range(2,6)), r1 = pick(range(2,9)), r2 = pick(range(1,9)), t = pick([1,2,3,-1,-2]);
+        return build(q, `lim (x\u2192${fmt(t)}) (${quad(p,r1,r2)}) = ?`, p*t*t-r1*t+r2,
+          [p*t*t+r1*t+r2, p*t*t-r1*t-r2, p*t-r1+r2, p*t*t-r1*t, p*t*t+r1*t-r2, p*t*t-r1*t+r2+1]); },
+  128: q => { const m = pick(range(2,7)), n = pick(range(1,9)), t = pick(range(-3,8));
+        return build(q, `If f(x) = ${m}x + ${n}, then f(${fmt(t)}) = ?`, m*t+n, [m*t-n, m*(t+n), m+n, t+n, m*t, m*t+n+1]); },
+  129: q => { const c = pick(range(2,6)), s = 1+rnd(c-1);
+        return build(q, `For f(x) = x ${MINUS} ${s} (when x < ${c}), the left hand limit at x = ${c} is:`, c-s, [s, c, c+s, c-s+1, c-s-1, 2*c-s]); },
+  130: q => { const c = pick(range(2,6)), m = pick(range(2,5)), n = pick(range(1,5));
+        return build(q, `For f(x) = ${m}x + ${n} (when x \u2265 ${c}), the right hand limit at x = ${c} is:`, m*c+n, [m+n, m*c, c+n, m*(c+n), m*c-n, m*c+n+1]); },
+  131: q => { const c = pick(range(2,6)), s = 1+rnd(c-1), m = pick(range(2,5)), n = pick(range(1,5));
+        return fixed(q, `For f(x) = x ${MINUS} ${s} (when x < ${c}) and f(x) = ${m}x + ${n} (when x \u2265 ${c}), the left limit at x = ${c} is ${c-s} and the right limit is ${m*c+n}. Since the left limit \u2260 the right limit, f at x = ${c} is:`, q.opts, q.ans); },
+  132: q => { const c = pick(range(2,5)), a = pick(range(3,7)), m = pick(range(2,a-1)), b = pick(range(1,8)), L = a*c+b;
+        return build(q, `For f(x) = ${a}x + ${b} (x \u2264 ${c}) and ${m}x + ${(a-m)*c+b} (x > ${c}), the left hand limit at x = ${c} is:`, L, [L+1, L-1, a*c, a+b, L+2, L-2]); },
+  133: q => { const c = pick(range(2,5)), a = pick(range(3,7)), m = pick(range(2,a-1)), b = pick(range(1,8)), L = a*c+b, n = (a-m)*c+b;
+        return build(q, `For f(x) = ${a}x + ${b} (x \u2264 ${c}) and ${m}x + ${n} (x > ${c}), the right hand limit at x = ${c} (using ${m}x + ${n}) is:`, L, [L+1, L-1, m*c, m+n, L+2, a*c]); },
+  134: q => { const c = pick(range(2,5)), a = pick(range(3,7)), m = pick(range(2,a-1)), b = pick(range(1,8)), L = a*c+b, n = (a-m)*c+b;
+        return fixed(q, `For f(x) = ${a}x + ${b} (x \u2264 ${c}) and ${m}x + ${n} (x > ${c}), both limits at x = ${c} are ${L} and f(${c}) = ${L}. So f at x = ${c} is:`, q.opts, q.ans); },
+  135: q => { const p = pick(range(2,5)), r1 = pick(range(1,6)), r2 = pick(range(1,9)), a = pick([-3,-2,-1,1,2,3]);
+        return build(q, `lim (x\u2192${fmt(a)}) (${co(p)}x\u00b2 + ${co(r1)}x ${MINUS} ${r2}) = ?`, p*a*a+r1*a-r2,
+          [p*a*a+r1*a+r2, p*a*a-r1*a-r2, p*a*a-r1*a+r2, p*a+r1-r2, p*a*a+r1*a-r2+1, p*a*a+r1*a-r2-1]); },
+  136: q => { const a = pick(range(2,12));
+        return build(q, `lim (x\u2192${a}) |x ${MINUS} ${a}| = ?`, 0, [a, 2*a, -a, 1, a*a]); },
+  137: q => { const a = pick(range(2,9));
+        return build(q, `lim (x\u2192${MINUS}${a}) (x\u00b2 ${MINUS} ${a*a})/(x ${MINUS} ${a}) = ?`, 0, [-2*a, 2*a, a*a, -a, a, -a*a]); },
+  138: q => { const a = pick(range(2,12));
+        return fixed(q, `f(x) = |x ${MINUS} ${a}| at x = ${a} is:`, q.opts, q.ans); },
+  139: q => { const k = pick(range(2,9)), c = pick(range(1,6));
+        return build(q, `If f(x) = ${k}x for x \u2264 ${MINUS}${c}, then f(${MINUS}${c}) = ?`, -k*c, [k*c, k, -k, c, k-c, -c]); },
+  140: q => { const c = pick(range(2,6)), d = 1+rnd(Math.min(9, c*c-1)), v = c*c-d;
+        return build(q, `If f(x) = x\u00b2 ${MINUS} ${d} for ${MINUS}${c} < x < ${c}, then as x \u2192 ${c} the value approaches:`, v, [c*c+d, c*c, c-d, d, v+1, v-1]); },
+  141: q => { const c = pick(range(2,6)), d = 1+rnd(Math.min(9, c*c-1)), v = c*c-d;
+        return fixed(q, `If f(x) = ${v} for x \u2265 ${c} and x\u00b2 ${MINUS} ${d} approaches ${v} as x \u2192 ${c}\u207b, then f at x = ${c} is:`, q.opts, q.ans); },
+  142: q => { const c = pick(range(2,5)), k = pick(range(2,6)), d = 1+rnd(Math.min(9, c*c-1));
+        return fixed(q, `If f(x) = ${k}x for x \u2264 ${MINUS}${c} and x\u00b2 ${MINUS} ${d} for ${MINUS}${c} < x < ${c}, then at x = ${MINUS}${c} the left side gives ${MINUS}${k*c} and the right side gives ${c*c-d}. So f at x = ${MINUS}${c} is:`, q.opts, q.ans); },
+  143: q => { const c = pick(range(2,9));
+        return build(q, `For f(x) = mx (x < ${c}) and x\u00b2 (x \u2265 ${c}) to be continuous at x = ${c}, we need ${c}m = ?`, c*c, [c, 2*c, 0, c*c+c, c*c-c, 2*c*c]); },
+  144: q => { const c = pick(range(2,9));
+        return build(q, `For f(x) = mx (x < ${c}) and x\u00b2 (x \u2265 ${c}) to be continuous at x = ${c}, the value of m is:`, c, [1, 2, c*c, c+1, c-1, 2*c]); },
+  145: q => { let c, k, v; do { c = pick(range(2,8)); k = pick(range(1,6)); v = pick(range(1,4)); } while (v === c+k);
+        return build(q, `For f(x) = x + ${k} (x \u2260 ${c}) and f(${c}) = ${v}, lim (x\u2192${c}) f(x) = ?`, c+k, [v, c, k, c*k, c+k+1, c+k-1, 0]); },
+  146: q => { let c, k, v; do { c = pick(range(2,8)); k = pick(range(1,6)); v = pick(range(1,4)); } while (v === c+k);
+        return build(q, `If f(x) = x + ${k} for x \u2260 ${c} and f(${c}) = ${v}, then f(${c}) = ?`, v, [c+k, c, k, 0, v+1, v-1]); },
+  147: q => { let c, k, v; do { c = pick(range(2,8)); k = pick(range(1,6)); v = pick(range(1,4)); } while (v === c+k);
+        return fixed(q, `For f(x) = x + ${k} (x \u2260 ${c}) and f(${c}) = ${v}, since the limit (${c+k}) \u2260 f(${c}) (${v}), f at x = ${c} is:`, q.opts, q.ans); },
+  148: sqBuild
+};
+
+function makeInstance(q, ctx){
+  if (CUSTOM[q.n]) return CUSTOM[q.n](q, ctx);
+  const g = GEN[q.n]; if (!g) return q;
+  const a = g.pool[rnd(g.pool.length)], ans = g.f(a);
+  const bad = [];
+  for (const c of g.bad(a)){ if (c !== ans && !bad.includes(c) && Number.isFinite(c)) bad.push(c); }
+  for (let d=1; bad.length<6; d++){ for (const c of [ans+d, ans-d]) if (c!==ans && !bad.includes(c)) bad.push(c); }
+  for (let i=bad.length-1;i>0;i--){ const j = rnd(i+1); [bad[i],bad[j]] = [bad[j],bad[i]]; }
+  const vals = bad.slice(0,3), pos = rnd(4); vals.splice(pos,0,ans);
+  return { gen:true, n:q.n, q: q.q.replace(/f\([^)]*\)(?= = \?$)/, "f(" + fmt(a) + ")"), opts: vals.map(fmt), ans: pos };
+}
+const TOTAL = QUESTIONS.length;
+const KEY = "calc_u1_second75_v1";
+const $ = id => document.getElementById(id);
+const show = id => { $("adm").classList.toggle("hide", id==="s-quiz");
+  for (const s of ["s-start","s-quiz","s-end"]) $(s).classList.toggle("hide", s!==id); };
+
+const load = () => { try { return JSON.parse(localStorage.getItem(KEY)); } catch(e){ return null; } };
+const save = o => { try { localStorage.setItem(KEY, JSON.stringify(o)); } catch(e){} };
+const mmss = ms => { const s=Math.round(ms/1000); return String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0"); };
+
+// unbiased Fisher-Yates shuffle (question order only; options stay as written)
+function shuffle(a){
+  a = a.slice();
+  for (let i=a.length-1;i>0;i--){
+    const r = new Uint32Array(1); let j;
+    do { crypto.getRandomValues(r); } while (r[0] >= 4294967296 - (4294967296 % (i+1)));
+    j = r[0] % (i+1);
+    [a[i],a[j]] = [a[j],a[i]];
+  }
+  return a;
+}
+
+let order, idx = 0, picked = null, correct = 0, answered = 0, log = [];
+let player = {name:"",roll:""}, t0 = 0, live = false, usedFS = false, timer = null;
+
+function renderEnd(rec){
+  show("s-end");
+  const done = rec.status === "finished";
+  $("et").textContent = done ? "Quiz finished" : "Quiz terminated";
+  $("et").className = done ? "good" : "bad";
+  $("em").textContent = done ? "Your answers have been submitted." :
+    "You left the quiz screen, so the quiz ended. Reason: " + rec.reason + ".";
+  $("sc").textContent = rec.score + " / " + TOTAL;
+  const wrong = (rec.log||[]).filter(x => (x.g || QUESTIONS[x.i]).ans !== x.p);
+  const rev = wrong.map(x=>{
+    const q = x.g || QUESTIONS[x.i], L = "ABCD";
+    return "Q" + q.n + ". " + q.q + "\n   Your answer: " + L[x.p] + ") " + q.opts[x.p] +
+           "\n   Correct answer: " + L[q.ans] + ") " + q.opts[q.ans];
+  });
+  $("rp").textContent = [
+    "Name: " + rec.name,
+    "Roll no: " + rec.roll,
+    "Correct: " + rec.score,
+    "Wrong: " + (TOTAL - rec.score)
+  ].join("\n");
+  $("rv").textContent = rev.length ? "Your wrong answers (" + rev.length + "):\n\n" + rev.join("\n\n")
+                                   : "No wrong answers. Perfect!";
+}
+
+function endQuiz(status, reason){
+  if (!live) return;
+  live = false;
+  clearInterval(timer);
+  window.removeEventListener("beforeunload", onUnload);
+  if (document.fullscreenElement && document.exitFullscreen) { try { document.exitFullscreen(); } catch(e){} }
+  const rec = {status, reason: reason||"", name:player.name, roll:player.roll,
+               score:correct, answered, log, ms: Date.now()-t0};
+  save(rec);
+  renderEnd(rec);
+}
+const terminate = why => endQuiz("terminated", why);
+
+function onUnload(e){ e.preventDefault(); e.returnValue = ""; }
+
+function showQ(){
+  const q = QUESTIONS[order[idx]];
+  picked = null;
+  $("qn").textContent = "Question " + (idx+1) + " of " + TOTAL;
+  $("pb").style.width = (idx/TOTAL*100) + "%";
+  $("qt").textContent = q.q;
+  const box = $("opts"); box.textContent = "";
+  q.opts.forEach((t,i)=>{
+    const b = document.createElement("button");
+    b.className = "opt";
+    const l = document.createElement("b"); l.textContent = "ABCD"[i] + ")";
+    const s = document.createElement("span"); s.textContent = t;
+    b.append(l,s);
+    b.onclick = () => {
+      picked = i;
+      [...box.children].forEach((c,k)=>c.classList.toggle("sel",k===i));
+      $("next").disabled = false;
+    };
+    box.appendChild(b);
+  });
+  $("next").disabled = true;
+  $("next").textContent = idx === TOTAL-1 ? "Finish" : "Next";
+}
+
+$("next").onclick = () => {
+  if (!live || picked === null) return;
+  answered++;
+  log.push({i: order[idx], p: picked, g: QUESTIONS[order[idx]].gen ? QUESTIONS[order[idx]] : null});
+  if (picked === QUESTIONS[order[idx]].ans) correct++;
+  idx++;
+  if (idx >= TOTAL){ $("pb").style.width = "100%"; endQuiz("finished",""); }
+  else showQ();
+};
+
+async function start(){
+  const name = $("nm").value.trim(), roll = $("rl").value.trim();
+  if (!name || !roll){ $("err").textContent = "Please enter your name and roll no."; return; }
+  $("err").textContent = "";
+  player = {name, roll};
+  // mark attempt as used BEFORE anything else: a refresh from here on counts as leaving
+  save({status:"terminated", reason:"page was reloaded or closed", name, roll, score:0, answered:0, ms:0});
+  try { await document.documentElement.requestFullscreen(); } catch(e){}
+  usedFS = !!document.fullscreenElement;
+  const ctx = newCtx();
+  QUESTIONS = BASE.map(q => makeInstance(q, ctx));
+  order = shuffle([...QUESTIONS.keys()]);
+  idx = 0; correct = 0; answered = 0; log = []; t0 = Date.now();
+  live = true; graceUntil = Date.now() + 1500;
+  show("s-quiz"); showQ();
+  timer = setInterval(()=>{ $("clock").textContent = mmss(Date.now()-t0); }, 500);
+  window.addEventListener("beforeunload", onUnload);
+  history.pushState({q:1}, "");
+}
+let graceUntil = 0;
+$("go").onclick = start;
+
+// ---- leave detection ----
+document.addEventListener("visibilitychange", ()=>{ if (live && document.hidden) terminate("switched tab or app"); });
+window.addEventListener("blur", ()=>{ if (live && Date.now() > graceUntil) terminate("window lost focus"); });
+document.addEventListener("fullscreenchange", ()=>{ if (live && usedFS && !document.fullscreenElement) terminate("exited full screen"); });
+window.addEventListener("popstate", ()=>{ if (live) terminate("pressed back"); });
+window.addEventListener("pagehide", ()=>{ /* attempt already stored as terminated; finished/terminated records overwrite it */ });
+
+// ---- light deterrents ----
+["contextmenu","copy","cut","paste","dragstart"].forEach(ev=>document.addEventListener(ev,e=>{ if (live) e.preventDefault(); }));
+document.addEventListener("keydown", e=>{
+  if (!live) return;
+  const k = e.key.toLowerCase();
+  if (e.key === "F12" || e.key === "F5" || e.key === "Escape" ||
+      ((e.ctrlKey||e.metaKey) && ["u","s","p","c","a","r","f","i","j"].includes(k)) ||
+      (e.ctrlKey && e.shiftKey && ["i","j","c"].includes(k))) e.preventDefault();
+});
+
+// ---- copy report ----
+$("cp").onclick = async () => {
+  const txt = $("rp").textContent;
+  try { await navigator.clipboard.writeText(txt); }
+  catch(e){ const r=document.createRange(); r.selectNodeContents($("rp")); const s=getSelection(); s.removeAllRanges(); s.addRange(r); document.execCommand("copy"); }
+  $("cp").textContent = "Copied ✓";
+  setTimeout(()=>$("cp").textContent="Copy report",1500);
+};
+
+// ---- admin reset (code is stored only as a SHA-256 hash) ----
+const ADMIN_HASH = "8f1104102cf38535215740be8015e5230acb12fda411c5674db208d259350eed";
+const sha256 = async s => [...new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s)))]
+  .map(b=>b.toString(16).padStart(2,"0")).join("");
+$("admt").onclick = () => $("admb").classList.toggle("hide");
+$("admg").onclick = async () => {
+  if (live) return;
+  try {
+    if (await sha256($("admc").value.trim().toUpperCase()) === ADMIN_HASH){
+      try { localStorage.removeItem(KEY); } catch(e){}
+      location.reload();
+    } else $("adme").textContent = "Wrong code.";
+  } catch(e){ $("adme").textContent = "Admin reset needs https or localhost."; }
+};
+
+// ---- boot: one attempt only ----
+const prev = load();
+if (prev && (prev.status==="finished" || prev.status==="terminated")) renderEnd(prev);
+else show("s-start");
+</script>
+</body>
+</html>
